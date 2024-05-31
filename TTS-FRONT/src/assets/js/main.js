@@ -62,40 +62,29 @@ export function initializeScrollTopButton() {
 }
 
 export function initializeMobileNavToggle() {
-  // Sélectionnez l'icône de menu mobile
   const mobileNavToggleBtn = document.querySelector(".mobile-nav-toggle");
-
-  // Fonction pour basculer le menu de navigation mobile
   function mobileNavToggle() {
-    // Ajoutez ou supprimez la classe pour activer le menu de navigation mobile
     document.querySelector("body").classList.toggle("mobile-nav-active");
-    // Basculer entre l'icône de menu et l'icône de fermeture
     mobileNavToggleBtn.classList.toggle("bi-list");
     mobileNavToggleBtn.classList.toggle("bi-x");
   }
 
-  // Vérifiez si l'icône de menu mobile existe
   if (mobileNavToggleBtn) {
-    // Ajoutez un écouteur d'événements pour le clic sur l'icône de menu mobile
     mobileNavToggleBtn.addEventListener("click", mobileNavToggle);
   }
 
-  // Ajoutez des écouteurs d'événements pour les liens du menu de navigation mobile
   document.querySelectorAll("#navmenu a").forEach((navmenu) => {
     navmenu.addEventListener("click", () => {
-      // Fermez le menu de navigation mobile lorsqu'un lien est cliqué
       if (document.querySelector(".mobile-nav-active")) {
         mobileNavToggle();
       }
     });
   });
 
-  // Ajoutez des écouteurs d'événements pour les éléments de menu déroulant mobile
   document.querySelectorAll(".navmenu .toggle-dropdown").forEach((navmenu) => {
     navmenu.addEventListener("click", function (e) {
       if (document.querySelector(".mobile-nav-active")) {
         e.preventDefault();
-        // Basculer l'état actif du menu déroulant
         this.parentNode.classList.toggle("active");
         this.parentNode.nextElementSibling.classList.toggle("dropdown-active");
         e.stopImmediatePropagation();
