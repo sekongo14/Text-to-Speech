@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import { Link } from "react-router-dom";
 import Footer from "../components/Footer.jsx";
 import Header from "../components/Header.jsx";
 import "./../assets/css/acceuil.css";
@@ -57,17 +58,18 @@ function Acceuil() {
                 Améliorez vos projets avec des options de discours avancées.
               </p>
               <div className="d-flex" data-aos="fade-up" data-aos-delay="200">
-                <a href="#about" className="btn-get-started">
+                <Link to={"/inscription"} className="btn-get-started">
                   Commencer
-                </a>
-                <a
-                  href="https://www.youtube.com/watch?v=LXb3EKWsInQ" // Remplacez par une vidéo pertinente
+                </Link>
+                <Link
+                  to={"/demo"} // Remplacez par l'URL de votre démo
                   className="glightbox btn-watch-video d-flex align-items-center"
                 >
                   <i className="bi bi-play-circle"></i>
                   <span>Voir la démo</span>
-                </a>
+                </Link>
               </div>
+
               <img
                 src="/src/assets/img/hero-services-img.webp" // Utilisez une image représentative
                 className="img-fluid hero-img"
