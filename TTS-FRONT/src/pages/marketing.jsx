@@ -1,9 +1,19 @@
-import "./../assets/css/marketing.css"
+
+import TextToSpeech from "../components/tts_form.jsx";
+import Footer from "../components/Footer.jsx";
+import Header from "../components/Header.jsx";
+
+
 function Marketing(){
 
-
+  
+    console.log('Bonjour')
     return <>
-        <div>Page Marketing</div>
+        <div>
+        <Header/>
+        <TextToSpeech />
+        <Footer/>
+        </div>
     
          </>
 }
