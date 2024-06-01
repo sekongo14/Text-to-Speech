@@ -47,7 +47,7 @@ function Acceuil() {
           <div className="container text-center">
             <div className="d-flex flex-column justify-content-center align-items-center">
               <h1 data-aos="fade-up">
-                Bienvenue sur <span>QuickStart TTS</span>
+                Bienvenue sur <span>SpeechSync</span>
               </h1>
               <p data-aos="fade-up" data-aos-delay="100">
                 <strong>
@@ -71,7 +71,7 @@ function Acceuil() {
               </div>
 
               <img
-                src="/src/assets/img/hero-services-img.webp" // Utilisez une image représentative
+                src="/src/assets/img/Speech_to_sppech.png" // Utilisez une image représentative
                 className="img-fluid hero-img"
                 alt="Service de conversion de texte en discours"
                 data-aos="zoom-out"
@@ -149,9 +149,9 @@ function Acceuil() {
                 <p className="who-we-are">Qui Sommes-Nous</p>
                 <h3>Libérer le Potentiel avec une Stratégie Créative</h3>
                 <p className="fst-italic">
-                  Chez QuickStart TTS, nous sommes passionnés par la
-                  transformation de texte en discours de qualité supérieure
-                  grâce à notre technologie d'intelligence artificielle avancée.
+                  Chez SpeechSync, nous sommes passionnés par la transformation
+                  de texte en discours de qualité supérieure grâce à notre
+                  technologie d'intelligence artificielle avancée.
                 </p>
                 <ul>
                   <li>
@@ -273,9 +273,13 @@ function Acceuil() {
           <div className="container">
             {/* Features Item - Marketing Digital */}
             <div className="row gy-4 justify-content-between features-item">
-              <div className="col-lg-6" data-aos="fade-up" data-aos-delay="100">
+              <div
+                className="col-lg-6 mt-5"
+                data-aos="fade-up"
+                data-aos-delay="100"
+              >
                 <img
-                  src="/src/assets/img/features-1.jpg"
+                  src="https://img.freepik.com/free-photo/marketing-ideas-share-research-planning-concept_53876-127431.jpg?t=st=1717279022~exp=1717282622~hmac=3fe36028229174f4db4d56a3c684d627442522de3ae31c016df40fb4531d3e22&w=740"
                   className="img-fluid"
                   alt="Marketing Digital"
                 />
@@ -351,7 +355,7 @@ function Acceuil() {
                 data-aos-delay="200"
               >
                 <img
-                  src="/src/assets/img/features-2.jpg"
+                  src="https://img.freepik.com/free-photo/front-view-stacked-books-graduation-cap-open-book-education-day_23-2149241017.jpg?t=st=1717279269~exp=1717282869~hmac=fe1a7eed0cee2c090c12a3fd1520f357086b9e895004c3e4d48dc5544b3e20fb&w=1060"
                   className="img-fluid"
                   alt="Éducation et Formation"
                 />
@@ -442,7 +446,7 @@ function Acceuil() {
                   </div>
                 </div>
                 <div className="member-info text-center">
-                  <h4>Sarah Johnson</h4>
+                  <h4>Yéo Maïmouna</h4>
                   <span>Full-Stack Developer</span>
                   <p>
                     Sarah crée des solutions complètes en combinant ses
