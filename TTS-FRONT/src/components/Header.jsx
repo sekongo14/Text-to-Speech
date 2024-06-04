@@ -13,30 +13,30 @@ const Header = () => {
       <div className="container-fluid container-xl position-relative d-flex align-items-center">
         <Link to="/" className="logo d-flex align-items-center me-auto">
           <img src={logo} alt="QuickStart Logo" />
-          <h1 className="sitename">QuickStart</h1>
+          <h1 className="sitename">SpeechSync</h1>
         </Link>
-
+        {/* 
         <nav id="navmenu" className="navmenu">
           <ul>
             <li>
-              <Link to="/#hero">Home</Link>
+              <Link to="/">Home</Link>
             </li>
             <li>
-              <Link to="/#about">About</Link>
+              <Link to="/">About</Link>
             </li>
             <li>
-              <Link to="/#services">Services</Link>
+              <Link to="/">Services</Link>
             </li>
           </ul>
           <i className="mobile-nav-toggle d-xl-none bi bi-list"></i>
-        </nav>
+        </nav> */}
 
-        <a className="btn-getstarted" href="#about">
+        <Link className="btn-getstarted" to={"/inscription"}>
           Inscription
-        </a>
-        <a className="btn-getstarted" href="#about">
+        </Link>
+        <Link className="btn-getstarted" to={"/connexion"}>
           Connexion
-        </a>
+        </Link>
       </div>
     </header>
   );
