@@ -1,7 +1,10 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import logo from "../assets/img/logo.png";
 import "./../assets/css/footer.css";
 function Footer() {
+  const location = useLocation();
+
+  console.log(location.pathname);
   return (
     // <footer id="footer" className="footer position-relative">
     //   <div className="container footer-top">
@@ -119,28 +122,29 @@ function Footer() {
           Lorem ipsum dolor, sit amet consectetur adipisicing elit. Incidunt
           consequuntur amet culpa cum itaque neque.
         </p>
+        {location.pathname === "/" ? (
+          <ul className="mt-12 flex flex-wrap justify-center gap-6 md:gap-8 lg:gap-12">
+            <li>
+              <a
+                className="text-gray-700 transition hover:text-gray-700/75"
+                href="#"
+              >
+                {" "}
+                Insciption{" "}
+              </a>
+            </li>
 
-        <ul className="mt-12 flex flex-wrap justify-center gap-6 md:gap-8 lg:gap-12">
-          <li>
-            <a
-              className="text-gray-700 transition hover:text-gray-700/75"
-              href="#"
-            >
-              {" "}
-              Insciption{" "}
-            </a>
-          </li>
-
-          <li>
-            <a
-              className="text-gray-700 transition hover:text-gray-700/75"
-              href="#"
-            >
-              {" "}
-              Connexion{" "}
-            </a>
-          </li>
-        </ul>
+            <li>
+              <a
+                className="text-gray-700 transition hover:text-gray-700/75"
+                href="#"
+              >
+                {" "}
+                Connexion{" "}
+              </a>
+            </li>
+          </ul>
+        ) : null}
 
         <ul className="mt-12 flex justify-center gap-6 md:gap-8">
           <li>
