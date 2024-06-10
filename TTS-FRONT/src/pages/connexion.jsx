@@ -1,21 +1,54 @@
-import { Eye, EyeOff } from "lucide-react"; // Importez ArrowRight depuis Lucide
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import axios from "axios";
+import { Eye, EyeOff } from "lucide-react";
 import "./../assets/css/inscription.css";
 
 function Connexion() {
   const [showPassword, setShowPassword] = useState(false);
+  const [formData, setFormData] = useState({
+    username: '',
+    password: '',
+  });
+
+  const navigate = useNavigate();
 
   const togglePassword = () => {
     setShowPassword(!showPassword);
   };
+
+  const handleChange = (e) => {
+    const { id, value } = e.target;
+    setFormData((prevState) => ({
+      ...prevState,
+      [id]: value,
+    }));
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    axios.post('http://127.0.0.1:8000/account/api/token/login/', {
+      username: formData.username,
+      password: formData.password
+    })
+    .then(response => {
+      console.log(response.data);
+      localStorage.setItem('accessToken', response.data.access);
+      localStorage.setItem('refreshToken', response.data.refresh);
+      navigate('/');
+    })
+    .catch(error => {
+      console.error(error);
+    });
+  };
+
   return (
     <>
       <div className="Connexion w-[100%] h-[100vh] bg-gray-300 ">
         <div className="w-full h-full flex justify-center items-center  rounded-lg">
           <div className="flex container w-[55rem] h-[30rem] shadow-xl bg-gray-50 rounded-lg">
             <div className="flex-1 flex justify-center items-center">
-              <form className="max-w-[20rem] mx-auto space-y-4">
+              <form className="max-w-[20rem] mx-auto space-y-4" onSubmit={handleSubmit}>
                 <div className="mb-4">
                   <h1 className="text-3xl text-center font-bold">
                     Welcome back
@@ -27,22 +60,20 @@ function Connexion() {
                 </div>
                 <div className="">
                   <label
-                    htmlFor="email"
+                    htmlFor="username"
                     className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
                   >
-                    Email
+                    Nom d'utilisateur
                   </label>
                   <input
-                    type="email"
-                    id="email"
-                    className="flex h-9 w-full rounded-md  bg-slate-100 px-3 py-1 text-sm text-slate-700 shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-slate-400 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-transparent disabled:cursor-not-allowed disabled:opacity-50 dark:border-slate-800 dark:placeholder:text-slate-400 dark:focus-visible:ring-slate-300"
-                    placeholder="name@exemple.com"
+                    type="text"
+                    id="username"
+                    value={formData.username}
+                    onChange={handleChange}
+                    className="flex h-9 w-full rounded-md bg-slate-100 px-3 py-1 text-sm text-slate-700 shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-slate-400 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-transparent disabled:cursor-not-allowed disabled:opacity-50 dark:border-slate-800 dark:placeholder:text-slate-400 dark:focus-visible:ring-slate-300"
+                    placeholder="Nom d'utilisateur"
                     required
                   />
-                  {/* <p className="mt-2 text-sm text-green-600 dark:text-green-500">
-                    <span className="font-medium">Alright!</span> Username
-                    available!
-                  </p> */}
                 </div>
                 <div className="">
                   <label
@@ -55,14 +86,16 @@ function Connexion() {
                     <input
                       type={`${showPassword ? "text" : "password"}`}
                       id="password"
+                      value={formData.password}
+                      onChange={handleChange}
                       placeholder="*************************"
-                      className="flex h-9 w-full rounded-md  bg-slate-100 px-3 py-1 text-sm text-slate-700 shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-slate-400 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-transparent disabled:cursor-not-allowed disabled:opacity-50 dark:border-slate-800 dark:placeholder:text-slate-400 dark:focus-visible:ring-slate-300"
+                      className="flex h-9 w-full rounded-md bg-slate-100 px-3 py-1 text-sm text-slate-700 shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-slate-400 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-transparent disabled:cursor-not-allowed disabled:opacity-50 dark:border-slate-800 dark:placeholder:text-slate-400 dark:focus-visible:ring-slate-300"
                       required
                     />
                     <button
                       type="button"
                       className="absolute inset-y-0 right-0 flex items-center pr-2"
-                      onClick={() => togglePassword()}
+                      onClick={togglePassword}
                     >
                       {showPassword ? (
                         <Eye className="h-5 w-5 text-gray-500" />

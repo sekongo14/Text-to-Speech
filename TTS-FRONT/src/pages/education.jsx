@@ -1,6 +1,7 @@
 import { CircleArrowLeft, Download, Play } from "lucide-react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import axios from 'axios';
 import logo from "../assets/img/logo.png";
 import Footer from "../components/Footer.jsx";
 import "./../assets/css/education.css";
@@ -23,14 +24,44 @@ function Education() {
     setLanguage(e.target.value);
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    const formData = {
-      text,
-      language,
-      selectedVoice,
-    };
-    console.log(formData);
+  const handlePlay = async () => {
+    try {
+      const response = await axios.post('http://127.0.0.1:8000/education/text-to-speech/', {
+        text,
+        language,
+        selectedVoice,
+      }, {
+        responseType: 'arraybuffer' // Important for handling binary data
+      });
+
+      const audioBlob = new Blob([response.data], { type: 'audio/mp3' });
+      const audioUrl = URL.createObjectURL(audioBlob);
+      const audio = new Audio(audioUrl);
+      audio.play();
+    } catch (error) {
+      console.error('Error generating speech:', error);
+    }
+  };
+
+  const handleDownload = async () => {
+    try {
+      const response = await axios.post('http://127.0.0.1:8000/education/text-to-speech/', {
+        text,
+        language,
+        selectedVoice,
+      }, {
+        responseType: 'blob'
+      });
+
+      const url = window.URL.createObjectURL(new Blob([response.data]));
+      const link = document.createElement('a');
+      link.href = url;
+      link.setAttribute('download', 'speech.mp3');
+      document.body.appendChild(link);
+      link.click();
+    } catch (error) {
+      console.error('Error downloading speech:', error);
+    }
   };
 
   return (
@@ -62,7 +93,7 @@ function Education() {
             </h1>
 
             <img
-              src="/src/assets/img/text-to-speech.png" // Utilisez une image représentative
+              src="/src/assets/img/text-to-speech.png"
               className="img-fluid hero-img"
               alt="Service de conversion de texte en discours"
               data-aos="zoom-out"
@@ -89,6 +120,7 @@ function Education() {
                 type="button"
                 id="play"
                 className="bg-green-500 text-white px-4 py-2 rounded-md mr-2"
+                onClick={handlePlay}
               >
                 <Play />
                 Lire
@@ -97,6 +129,7 @@ function Education() {
                 type="button"
                 id="download"
                 className="bg-blue-500 text-white px-4 py-2 rounded-md"
+                onClick={handleDownload}
               >
                 <Download className="mr-2" />
                 Télécharger
@@ -115,10 +148,10 @@ function Education() {
                 onChange={handleLanguageChange}
                 className="mt-1 block w-full p-2 border border-gray-300 rounded-md bg-white focus:outline-none focus:border-green-400"
               >
-                <option value="">Choisir une voix</option>
-                <option value="Male">Male</option>
-
-                <option value="Female">Female</option>
+                <option value="">Choisir une langue</option>
+                <option value="en-US">English</option>
+                <option value="fr-FR">French</option>
+                {/* Ajoutez d'autres langues ici */}
               </select>
             </div>
             <div className="w-full md:w-1/2 lg:w-auto">
@@ -133,7 +166,6 @@ function Education() {
               >
                 <option value="">Choisir une voix</option>
                 <option value="Male">Male</option>
-
                 <option value="Female">Female</option>
               </select>
             </div>
