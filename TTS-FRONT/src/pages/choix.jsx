@@ -1,3 +1,4 @@
+import Cookies from "js-cookie";
 import { CircleArrowLeft } from "lucide-react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
@@ -12,6 +13,8 @@ function Choix() {
     setIsOpen(!isOpen);
   };
 
+  console.log(Cookies.get("accessToken"));
+  console.log(Cookies.get("refreshToken"));
   return (
     <div>
       <header

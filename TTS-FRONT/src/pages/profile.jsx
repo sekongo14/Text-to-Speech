@@ -1,10 +1,16 @@
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
+import useAuthStore from "../utils/userStore";
 
 const Profile = () => {
   const [isEditing, setIsEditing] = React.useState(false);
   const navigate = useNavigate();
+  const { user, logout } = useAuthStore((state) => state);
 
+  const handleLogout = () => {
+    logout();
+    navigate("/");
+  };
   return (
     <div className="p-16">
       <div className="p-8 mt-24 bg-white shadow">
@@ -27,7 +33,7 @@ const Profile = () => {
           </div>
           <div className="flex justify-between mt-32 space-x-8 md:mt-0 md:justify-center">
             <button
-              // onClick={() => HandleLogout()}
+              onClick={() => handleLogout()}
               className="text-white py-2 px-4 uppercase rounded bg-gray-400 hover:bg-gray-500 shadow hover:shadow-lg font-medium transition transform hover:-translate-y-0.5"
             >
               Deconnexion
@@ -83,7 +89,7 @@ const Profile = () => {
           ) : (
             <div>
               <h1 className="text-4xl font-medium text-gray-700">
-                Diara Madou
+                {user?.first_name} {user?.last_name}
                 <span className="font-light text-gray-500"></span>
               </h1>
               <p className="mt-3 font-light text-gray-600"></p>
