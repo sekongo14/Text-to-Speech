@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 
-const Profile = () => {
+function Profile() {
   const [isEditing, setIsEditing] = useState(false);
   const [userData, setUserData] = useState(null);
   const navigate = useNavigate();
@@ -11,7 +11,7 @@ const Profile = () => {
     const token = localStorage.getItem("token");
     if (token) {
       axios
-        .get("http://url-api/api/token/login/", {
+        .get("http://127.0.0.1:8000/api/token/login/", {
           headers: { Authorization: `Bearer ${token}` },
         })
         .then((response) => {
@@ -128,6 +128,6 @@ const Profile = () => {
       </div>
     </div>
   );
-};
+}
 
 export default Profile;

@@ -5,6 +5,8 @@ import Connexion from "./pages/connexion.jsx";
 import Education from "./pages/education.jsx";
 import Inscription from "./pages/inscription.jsx";
 import Marketing from "./pages/marketing.jsx";
+import Choix from "./pages/choix.jsx";
+import Profile from "./pages/profile.jsx";
 
 import "aos/dist/aos.css";
 import "glightbox/dist/css/glightbox.css";
@@ -51,6 +53,8 @@ function App() {
         <Route path="/connexion" Component={Connexion} />
         <Route path="/inscription" Component={Inscription} />
         <Route path="/marketing" Component={Marketing} />
+        <Route path="/choix" Component={Choix} />
+        <Route path="/profile" Component={Profile} />
       </Routes>
     </>
   );
