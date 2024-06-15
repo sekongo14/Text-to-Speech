@@ -1,27 +1,63 @@
-import { useState } from 'react'
-import { Routes, Route } from "react-router-dom";
+import { useEffect } from "react";
+import { Route, Routes } from "react-router-dom";
+import Acceuil from "./pages/acceuil.jsx";
+import Connexion from "./pages/connexion.jsx";
+import Education from "./pages/education.jsx";
+import Inscription from "./pages/inscription.jsx";
+import Marketing from "./pages/marketing.jsx";
+import Choix from "./pages/choix.jsx";
+import Profile from "./pages/profile.jsx";
 
-import './App.css'
-import Acceuil from './pages/acceuil.jsx'
-import Education from './pages/education.jsx'
-import Marketing from './pages/marketing.jsx'
-import Inscription from './pages/inscription.jsx'
-import Connexion from './pages/connexion.jsx'
+import "aos/dist/aos.css";
+import "glightbox/dist/css/glightbox.css";
+
+import {
+  handlePreloader,
+  handleScroll,
+  initializeAOS,
+  initializeFAQToggle,
+  initializeGLightbox,
+  initializeMobileNavToggle,
+  initializeScrollTopButton,
+} from "./assets/js/main.js";
+
 function App() {
-  const [count, setCount] = useState(0)
+  useEffect(() => {
+    // Initialize external scripts
+    initializeAOS();
+    initializeGLightbox();
+    handlePreloader();
+    initializeScrollTopButton();
+    initializeMobileNavToggle();
+    initializeFAQToggle();
+
+    const handleScrollEvent = () => {
+      handleScroll();
+    };
+
+    document.addEventListener("scroll", handleScrollEvent);
+    window.addEventListener("load", handleScrollEvent);
+
+    // Cleanup on unmount
+    return () => {
+      document.removeEventListener("scroll", handleScrollEvent);
+      window.removeEventListener("load", handleScrollEvent);
+    };
+  }, []);
 
   return (
     <>
-
-        <Routes>
-          <Route path='/acceuil' Component={Acceuil} />
-          <Route path='/education' Component={Education} />
-          <Route path='/connexion' Component={Connexion} />
-          <Route path='/inscription' Component={Inscription} />
-          <Route path='/marketing' Component={Marketing} />
-        </Routes>
+      <Routes>
+        <Route path="/acceuil" Component={Acceuil} />
+        <Route path="/education" Component={Education} />
+        <Route path="/connexion" Component={Connexion} />
+        <Route path="/inscription" Component={Inscription} />
+        <Route path="/marketing" Component={Marketing} />
+        <Route path="/choix" Component={Choix} />
+        <Route path="/profile" Component={Profile} />
+      </Routes>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
