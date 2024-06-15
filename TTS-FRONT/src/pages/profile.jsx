@@ -11,7 +11,7 @@ const Profile = () => {
     const token = localStorage.getItem("token");
     if (token) {
       axios
-        .get("http://your-api-url/api/user-profile/", {
+        .get("http://url-api/api/token/login/", {
           headers: { Authorization: `Bearer ${token}` },
         })
         .then((response) => {
