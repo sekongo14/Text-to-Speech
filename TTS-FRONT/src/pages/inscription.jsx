@@ -99,6 +99,28 @@ function Inscription() {
     setShowPassword(!showPassword);
   };
 
+  // const handleChange = (e) => {
+  //   const { id, value } = e.target;
+  //   setFormData((prevState) => ({
+  //     ...prevState,
+  //     [id]: value,
+  //   }));
+  // };
+
+  // const navigate = useNavigate();
+
+  // const onsu = (e) => {
+  //   e.preventDefault();
+  //   axios.post('http://127.0.0.1:8000/account/api/register/', formData)
+  //     .then(response => {
+  //       console.log(response.data);
+  //       navigate('/');
+  //     })
+  //     .catch(error => {
+  //       console.error(error);
+  //     });
+  // };
+
   return (
     <div className="inscription w-[100%] h-[100vh] bg-gray-300 ">
       <div className="w-full h-full flex justify-center items-center  rounded-lg">
