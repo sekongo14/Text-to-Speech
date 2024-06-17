@@ -1,5 +1,8 @@
 import { useEffect, useState } from "react";
 import "./../assets/css/marketing.css";
+import axios from "axios";
+
+const MAX_TEXT_LENGTH = 500000;
 
 const TextToSpeech = ({ onSubmit }) => {
   const [text, setText] = useState("");
@@ -7,6 +10,7 @@ const TextToSpeech = ({ onSubmit }) => {
   const [selectedVoice, setSelectedVoice] = useState("");
   const [language, setLanguage] = useState("en-US");
   const [videoFile, setVideoFile] = useState(null);
+  const [error, setError] = useState("");
 
   useEffect(() => {
     const synth = window.speechSynthesis;
@@ -24,7 +28,12 @@ const TextToSpeech = ({ onSubmit }) => {
   }, []);
 
   const handleTextChange = (e) => {
-    setText(e.target.value);
+    if (e.target.value.length > MAX_TEXT_LENGTH) {
+      setError(`Le texte ne peut pas dépasser ${MAX_TEXT_LENGTH} caractères.`);
+    } else {
+      setError("");
+      setText(e.target.value);
+    }
   };
 
   const handleVoiceChange = (e) => {
@@ -39,15 +48,40 @@ const TextToSpeech = ({ onSubmit }) => {
     setVideoFile(e.target.files[0]);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    const formData = {
-      text,
-      language,
-      selectedVoice,
-      videoFile,
-    };
-    onSubmit(formData);
+    if (text.length > MAX_TEXT_LENGTH) {
+      setError(`Le texte ne peut pas dépasser ${MAX_TEXT_LENGTH} caractères.`);
+      return;
+    }
+    if (!videoFile) {
+      setError("Veuillez télécharger un fichier vidéo.");
+      return;
+    }
+
+    const formData = new FormData();
+    formData.append("text", text);
+    formData.append("language", language);
+    formData.append("selectedVoice", selectedVoice);
+    formData.append("videoFile", videoFile);
+
+    try {
+      const response = await axios.post("http://127.0.0.1:8000/marketing/api/marketting/", formData, {
+        headers: {
+          "Content-Type": "multipart/form-data"
+        },
+        responseType: "blob"
+      });
+
+      const url = window.URL.createObjectURL(new Blob([response.data]));
+      const link = document.createElement('a');
+      link.href = url;
+      link.setAttribute('download', 'synced_video.mp4');
+      document.body.appendChild(link);
+      link.click();
+    } catch (error) {
+      console.error('Error processing the video:', error);
+    }
   };
 
   return (
@@ -57,14 +91,11 @@ const TextToSpeech = ({ onSubmit }) => {
         <div>
           <label htmlFor="text">Enter text:</label>
           <textarea id="text" value={text} onChange={handleTextChange} />
+          {error && <p className="text-red-500">{error}</p>}
         </div>
         <div>
           <label htmlFor="language">Select Language:</label>
-          <select
-            id="language"
-            value={language}
-            onChange={handleLanguageChange}
-          >
+          <select id="language" value={language} onChange={handleLanguageChange}>
             <option value="en-US">English (US)</option>
             <option value="fr-FR">French</option>
             <option value="es-ES">Spanish</option>
@@ -83,16 +114,9 @@ const TextToSpeech = ({ onSubmit }) => {
         </div>
         <div>
           <label htmlFor="video">Upload video:</label>
-          <input
-            type="file"
-            id="video"
-            accept="video/*"
-            onChange={handleVideoChange}
-          />
+          <input type="file" id="video" accept="video/*" onChange={handleVideoChange} />
         </div>
-        <button type="submit" className="bg-[#569EB5] text-white">
-          Submit
-        </button>
+        <button type="submit" className="bg-[#569EB5] text-white">Submit</button>
       </form>
     </div>
   );
