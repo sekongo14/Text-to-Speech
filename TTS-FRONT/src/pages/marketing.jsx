@@ -46,7 +46,7 @@ function Marketing() {
             </div>
           </div>
         </section>
-        <TextToSpeech />
+        <TextToSpeech onSubmit={() => {}} />
         <Footer />
       </div>
     </>

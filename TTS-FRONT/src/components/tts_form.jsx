@@ -1,6 +1,6 @@
+import axios from "axios";
 import { useEffect, useState } from "react";
 import "./../assets/css/marketing.css";
-import axios from "axios";
 
 const MAX_TEXT_LENGTH = 500000;
 
@@ -66,21 +66,25 @@ const TextToSpeech = ({ onSubmit }) => {
     formData.append("videoFile", videoFile);
 
     try {
-      const response = await axios.post("http://127.0.0.1:8000/marketing/api/marketting/", formData, {
-        headers: {
-          "Content-Type": "multipart/form-data"
-        },
-        responseType: "blob"
-      });
+      const response = await axios.post(
+        "http://127.0.0.1:8000/marketing/api/marketting/",
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+          responseType: "blob",
+        }
+      );
 
       const url = window.URL.createObjectURL(new Blob([response.data]));
-      const link = document.createElement('a');
+      const link = document.createElement("a");
       link.href = url;
-      link.setAttribute('download', 'synced_video.mp4');
+      link.setAttribute("download", "synced_video.mp4");
       document.body.appendChild(link);
       link.click();
     } catch (error) {
-      console.error('Error processing the video:', error);
+      console.error("Error processing the video:", error);
     }
   };
 
@@ -95,7 +99,11 @@ const TextToSpeech = ({ onSubmit }) => {
         </div>
         <div>
           <label htmlFor="language">Select Language:</label>
-          <select id="language" value={language} onChange={handleLanguageChange}>
+          <select
+            id="language"
+            value={language}
+            onChange={handleLanguageChange}
+          >
             <option value="en-US">English (US)</option>
             <option value="fr-FR">French</option>
             <option value="es-ES">Spanish</option>
@@ -114,9 +122,16 @@ const TextToSpeech = ({ onSubmit }) => {
         </div>
         <div>
           <label htmlFor="video">Upload video:</label>
-          <input type="file" id="video" accept="video/*" onChange={handleVideoChange} />
+          <input
+            type="file"
+            id="video"
+            accept="video/*"
+            onChange={handleVideoChange}
+          />
         </div>
-        <button type="submit" className="bg-[#569EB5] text-white">Submit</button>
+        <button type="submit" className="bg-[#569EB5] text-white">
+          Submit
+        </button>
       </form>
     </div>
   );
