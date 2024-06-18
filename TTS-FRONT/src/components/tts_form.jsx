@@ -1,16 +1,20 @@
+// tts_form.jsx
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { Loader } from "lucide-react";
 import "./../assets/css/marketing.css";
 
 const MAX_TEXT_LENGTH = 500000;
 
-const TextToSpeech = ({ onSubmit }) => {
+const TextToSpeech = () => {
   const [text, setText] = useState("");
   const [voices, setVoices] = useState([]);
   const [selectedVoice, setSelectedVoice] = useState("");
   const [language, setLanguage] = useState("en-US");
   const [videoFile, setVideoFile] = useState(null);
   const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [downloadUrl, setDownloadUrl] = useState("");
 
   useEffect(() => {
     const synth = window.speechSynthesis;
@@ -59,6 +63,9 @@ const TextToSpeech = ({ onSubmit }) => {
       return;
     }
 
+    setLoading(true);
+    setError("");
+
     const formData = new FormData();
     formData.append("text", text);
     formData.append("language", language);
@@ -78,13 +85,12 @@ const TextToSpeech = ({ onSubmit }) => {
       );
 
       const url = window.URL.createObjectURL(new Blob([response.data]));
-      const link = document.createElement("a");
-      link.href = url;
-      link.setAttribute("download", "synced_video.mp4");
-      document.body.appendChild(link);
-      link.click();
+      setDownloadUrl(url);
     } catch (error) {
       console.error("Error processing the video:", error);
+      setError("Une erreur s'est produite lors du traitement de la vidéo.");
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -129,10 +135,24 @@ const TextToSpeech = ({ onSubmit }) => {
             onChange={handleVideoChange}
           />
         </div>
-        <button type="submit" className="bg-[#569EB5] text-white">
-          Submit
+        <button
+          type="submit"
+          className="bg-[#569EB5] text-white flex justify-center items-center"
+        >
+          {loading ? <Loader className="animate-spin" /> : "Submit"}
         </button>
       </form>
+      {downloadUrl && (
+        <div className="download-container">
+          <a href={downloadUrl} download="synced_video.mp4">
+            Télécharger la vidéo
+          </a>
+          <video controls>
+            <source src={downloadUrl} type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
+        </div>
+      )}
     </div>
   );
 };

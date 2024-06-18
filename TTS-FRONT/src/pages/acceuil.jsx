@@ -39,7 +39,6 @@ function Acceuil() {
     <>
       <Header />
       <main className="main">
-        {/* Hero Section */}
         <section id="hero" className="hero section">
           <div className="hero-bg">
             <img src="/src/assets/img/hero-bg-light.webp" alt="" />
@@ -80,8 +79,6 @@ function Acceuil() {
             </div>
           </div>
         </section>
-        {/* /Hero Section */}
-        {/* Featured Services Section */}
         <section id="featured-services" className="featured-services section">
           <div className="container">
             <div className="row gy-4">

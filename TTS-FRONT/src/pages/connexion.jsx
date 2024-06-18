@@ -125,8 +125,6 @@ function Connexion() {
                     <input
                       type={`${showPassword ? "text" : "password"}`}
                       id="password"
-                      value={formData.password}
-                      onChange={handleChange}
                       placeholder="*************************"
                       className="flex h-9 w-full rounded-md  bg-slate-100 px-3 py-1 text-sm text-slate-700 shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-slate-400 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-transparent disabled:cursor-not-allowed disabled:opacity-50 dark:border-slate-800 dark:placeholder:text-slate-400 dark:focus-visible:ring-slate-300"
                       {...register("password")}
