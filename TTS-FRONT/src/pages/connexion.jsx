@@ -46,7 +46,7 @@ function Connexion() {
     try {
       setIsLoading(true);
       const response = await fetchAPI(
-        "account/api/token/login/",
+        "account/api/token/login/:id",
         {
           method: "POST",
           headers: {
