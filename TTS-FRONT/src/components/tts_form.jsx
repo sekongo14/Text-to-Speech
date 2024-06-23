@@ -74,7 +74,7 @@ const TextToSpeech = () => {
 
     try {
       const response = await axios.post(
-        "http://127.0.0.1:8000/marketing/api/marketting/",
+        "https://speechsync.pythonanywhere.com/marketing/api/marketting/",
         formData,
         {
           headers: {
