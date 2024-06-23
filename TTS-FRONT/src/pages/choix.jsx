@@ -1,16 +1,25 @@
 import { CircleArrowLeft } from "lucide-react";
-import { useState } from "react";
-import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import logo from "../assets/img/logo.png";
-import Modal from "../components/Modal";
-
+import DialogConfirm from "../components/Dialog.jsx";
+import useAuthStore from "../utils/userStore.jsx";
 function Choix() {
   const [showCard, setShowCard] = useState(false);
-  const [isOpen, setIsOpen] = useState(false);
+  const navigate = useNavigate();
+  const { logout, isLoggedIn, user } = useAuthStore((state) => state);
+  const [dialogOpen, setDialogOpen] = useState(false);
 
-  const toggle = () => {
-    setIsOpen(!isOpen);
+  const handleLogout = () => {
+    logout();
+    navigate("/connexion");
   };
+
+  useEffect(() => {
+    if (!isLoggedIn) {
+      navigate("/connexion");
+    }
+  }, []);
   return (
     <div>
       <header
@@ -49,7 +58,7 @@ function Choix() {
                   Profile
                 </Link>
                 <button
-                  onClick={toggle}
+                  onClick={() => setDialogOpen(true)}
                   className="block text-[#569EB5] hover:text-green-700"
                 >
                   Déconnexion
@@ -59,7 +68,7 @@ function Choix() {
               <button className="avatar focus:outline-none">
                 <img
                   className="w-10 h-10 rounded-full"
-                  src="https://i.pravatar.cc/300"
+                  src={`https://api.dicebear.com/9.x/avataaars/svg?seed=${user.email}`}
                   alt="Profile"
                 />
               </button>
@@ -88,11 +97,12 @@ function Choix() {
         </div>
       </div>
 
-      <Modal isOpen={isOpen} onClose={toggle}>
-        <h3 className="text-lg font-bold mb-4">
-          Voulez-vous vraiment vous déconnecter?
-        </h3>
-      </Modal>
+      <DialogConfirm
+        isOpen={dialogOpen}
+        onClose={() => setDialogOpen(false)}
+        onConfirm={handleLogout}
+        message="Êtes-vous sûr de vouloir vous déconnecter ?"
+      />
     </div>
   );
 }

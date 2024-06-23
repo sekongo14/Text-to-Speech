@@ -1,5 +1,5 @@
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Eye, EyeOff, Loader } from "lucide-react";
+import { ArrowLeft, Eye, EyeOff, Loader } from "lucide-react";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
@@ -46,7 +46,7 @@ function Connexion() {
     try {
       setIsLoading(true);
       const response = await fetchAPI(
-        "account/api/token/login/:id",
+        "account/api/token/login/",
         {
           method: "POST",
           headers: {
@@ -81,6 +81,13 @@ function Connexion() {
         <div className="w-full h-full flex justify-center items-center  rounded-lg">
           <div className="flex container w-[55rem] h-[30rem] shadow-xl bg-gray-50 rounded-lg">
             <div className="flex-1 flex justify-center items-center">
+              <button
+                type="button"
+                onClick={() => router("/")}
+                className="absolute top-8 left-12"
+              >
+                <ArrowLeft size={24} />
+              </button>
               <form
                 className="max-w-[20rem] mx-auto space-y-4"
                 onSubmit={handleSubmit(onSubmit)}

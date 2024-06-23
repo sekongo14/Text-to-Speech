@@ -1,5 +1,5 @@
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Eye, EyeOff, Loader } from "lucide-react";
+import { ArrowLeft, Eye, EyeOff, Loader } from "lucide-react";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
@@ -99,28 +99,6 @@ function Inscription() {
     setShowPassword(!showPassword);
   };
 
-  // const handleChange = (e) => {
-  //   const { id, value } = e.target;
-  //   setFormData((prevState) => ({
-  //     ...prevState,
-  //     [id]: value,
-  //   }));
-  // };
-
-  // const navigate = useNavigate();
-
-  // const onsu = (e) => {
-  //   e.preventDefault();
-  //   axios.post('http://127.0.0.1:8000/account/api/register/', formData)
-  //     .then(response => {
-  //       console.log(response.data);
-  //       navigate('/');
-  //     })
-  //     .catch(error => {
-  //       console.error(error);
-  //     });
-  // };
-
   return (
     <div className="inscription w-[100%] h-[100vh] bg-gray-300 ">
       <div className="w-full h-full flex justify-center items-center  rounded-lg">
@@ -135,6 +113,13 @@ function Inscription() {
             </div>
           </div>
           <div className="flex-1 flex justify-center items-center">
+            <button
+              type="button"
+              onClick={() => router("/")}
+              className="absolute top-8 left-12"
+            >
+              <ArrowLeft size={24} />
+            </button>
             <form
               className="max-w-[20rem] mx-auto space-y-2"
               onSubmit={handleSubmit(onSubmit)}

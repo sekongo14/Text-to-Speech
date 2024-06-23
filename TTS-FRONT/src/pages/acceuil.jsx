@@ -375,195 +375,98 @@ function Acceuil() {
             </p>
           </div>
           {/* End Section Title */}
-
-          <div className="container">
-            <div className="row gy-5">
+          <div className="container mx-auto py-10">
+            <div className="flex flex-wrap justify-center gap-8">
               <div
-                className="col-lg-4 col-md-6 member"
-                data-aos="fade-up"
-                data-aos-delay="100"
-              >
-                <div className="member-img">
-                  <img
-                    src="/src/assets/img/team/team-1.jpg"
-                    className="img-fluid"
-                    alt="Walter White"
-                  />
-                  <div className="social">
-                    <a href="#">
-                      <i className="bi bi-twitter"></i>
-                    </a>
-                    <a href="#">
-                      <i className="bi bi-facebook"></i>
-                    </a>
-                    <a href="#">
-                      <i className="bi bi-instagram"></i>
-                    </a>
-                    <a href="#">
-                      <i className="bi bi-linkedin"></i>
-                    </a>
-                  </div>
-                </div>
-                <div className="member-info text-center">
-                  <h4>Walter White</h4>
-                  <span>Full-Stack Developer</span>
-                  <p>
-                    Walter est notre développeur principal, dirigeant les
-                    efforts de développement avec une expertise inégalée et une
-                    passion pour l'innovation.
-                  </p>
-                </div>
-              </div>
-              {/* End Team Member */}
-
-              <div
-                className="col-lg-4 col-md-6 member"
+                className="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 member"
                 data-aos="fade-up"
                 data-aos-delay="200"
               >
-                <div className="member-img">
+                <div className="member-img relative overflow-hidden rounded-full w-36 h-36 mx-auto mb-4">
                   <img
-                    src="/src/assets/img/team/team-2.jpg"
-                    className="img-fluid"
-                    alt="Sarah Johnson"
+                    src="/src/assets/img/profile/yeloma.webp"
+                    className="w-full h-full object-cover"
+                    alt="Yéo Maïmouna"
                   />
-                  <div className="social">
-                    <a href="#">
-                      <i className="bi bi-twitter"></i>
-                    </a>
-                    <a href="#">
-                      <i className="bi bi-facebook"></i>
-                    </a>
-                    <a href="#">
-                      <i className="bi bi-instagram"></i>
-                    </a>
-                    <a href="#">
-                      <i className="bi bi-linkedin"></i>
-                    </a>
-                  </div>
                 </div>
                 <div className="member-info text-center">
-                  <h4>Yéo Maïmouna</h4>
-                  <span>Full-Stack Developer</span>
-                  <p>
-                    Sarah crée des solutions complètes en combinant ses
+                  <h4 className="text-xl font-semibold">Yéo Maïmouna</h4>
+                  <span className="text-gray-500">Full-Stack Developer</span>
+                  <p className="mt-2 text-sm">
+                    Yéo Maïmouna crée des solutions complètes en combinant ses
                     compétences en développement front-end et back-end.
                   </p>
                 </div>
               </div>
-              {/* End Team Member */}
 
               <div
-                className="col-lg-4 col-md-6 member"
+                className="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 member"
                 data-aos="fade-up"
                 data-aos-delay="300"
               >
-                <div className="member-img">
+                <div className="member-img relative overflow-hidden rounded-full w-36 h-36 mx-auto mb-4">
                   <img
-                    src="/src/assets/img/team/team-3.jpg"
-                    className="img-fluid"
-                    alt="William Anderson"
+                    src="/src/assets/img/profile/diara.webp"
+                    className="w-full h-full object-cover"
+                    alt="Diarassouba Mamadou"
                   />
-                  <div className="social">
-                    <a href="#">
-                      <i className="bi bi-twitter"></i>
-                    </a>
-                    <a href="#">
-                      <i className="bi bi-facebook"></i>
-                    </a>
-                    <a href="#">
-                      <i className="bi bi-instagram"></i>
-                    </a>
-                    <a href="#">
-                      <i className="bi bi-linkedin"></i>
-                    </a>
-                  </div>
                 </div>
                 <div className="member-info text-center">
-                  <h4>William Anderson</h4>
-                  <span>Full-Stack Developer</span>
-                  <p>
-                    William est responsable de développer et maintenir notre
-                    infrastructure, garantissant des performances optimales.
+                  <h4 className="text-xl font-semibold">Diarassouba Mamadou</h4>
+                  <span className="text-gray-500">Full-Stack Developer</span>
+                  <p className="mt-2 text-sm">
+                    Diarassouba Mamadou est responsable de développer et
+                    maintenir notre infrastructure, garantissant des
+                    performances optimales.
                   </p>
                 </div>
               </div>
-              {/* End Team Member */}
 
               <div
-                className="col-lg-4 col-md-6 member"
+                className="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 member"
                 data-aos="fade-up"
                 data-aos-delay="400"
               >
-                <div className="member-img">
+                <div className="member-img relative overflow-hidden rounded-full w-36 h-36 mx-auto mb-4">
                   <img
-                    src="/src/assets/img/team/team-4.jpg"
-                    className="img-fluid"
-                    alt="Amanda Jepson"
+                    src="/src/assets/img/profile/sekongo.webp"
+                    className="w-full h-full object-cover"
+                    alt="Sekongo Ismael"
                   />
-                  <div className="social">
-                    <a href="#">
-                      <i className="bi bi-twitter"></i>
-                    </a>
-                    <a href="#">
-                      <i className="bi bi-facebook"></i>
-                    </a>
-                    <a href="#">
-                      <i className="bi bi-instagram"></i>
-                    </a>
-                    <a href="#">
-                      <i className="bi bi-linkedin"></i>
-                    </a>
-                  </div>
                 </div>
                 <div className="member-info text-center">
-                  <h4>Amanda Jepson</h4>
-                  <span>Full-Stack Developer</span>
-                  <p>
-                    Amanda combine ses compétences en front-end et back-end pour
-                    développer des solutions complètes et efficaces.
+                  <h4 className="text-xl font-semibold">Sekongo Ismael</h4>
+                  <span className="text-gray-500">Full-Stack Developer</span>
+                  <p className="mt-2 text-sm">
+                    Sekongo Ismael combine ses compétences en front-end et
+                    back-end pour développer des solutions complètes et
+                    efficaces.
                   </p>
                 </div>
               </div>
-              {/* End Team Member */}
 
               <div
-                className="col-lg-4 col-md-6 member"
+                className="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 member"
                 data-aos="fade-up"
                 data-aos-delay="500"
               >
-                <div className="member-img">
+                <div className="member-img relative overflow-hidden rounded-full w-36 h-36 mx-auto mb-4">
                   <img
                     src="/src/assets/img/team/team-5.jpg"
-                    className="img-fluid"
-                    alt="Brian Doe"
+                    className="w-full h-full object-cover"
+                    alt="Wolle Arnaud"
                   />
-                  <div className="social">
-                    <a href="#">
-                      <i className="bi bi-twitter"></i>
-                    </a>
-                    <a href="#">
-                      <i className="bi bi-facebook"></i>
-                    </a>
-                    <a href="#">
-                      <i className="bi bi-instagram"></i>
-                    </a>
-                    <a href="#">
-                      <i className="bi bi-linkedin"></i>
-                    </a>
-                  </div>
                 </div>
                 <div className="member-info text-center">
-                  <h4>Brian Doe</h4>
-                  <span>Full-Stack Developer</span>
-                  <p>
-                    Brian assure le déploiement et la maintenance de notre
-                    infrastructure, garantissant une continuité de service sans
-                    faille.
+                  <h4 className="text-xl font-semibold">Wolle Arnaud</h4>
+                  <span className="text-gray-500">Full-Stack Developer</span>
+                  <p className="mt-2 text-sm">
+                    Wolle Arnaud assure le déploiement et la maintenance de
+                    notre infrastructure, garantissant une continuité de service
+                    sans faille.
                   </p>
                 </div>
               </div>
-              {/* End Team Member */}
             </div>
           </div>
         </section>

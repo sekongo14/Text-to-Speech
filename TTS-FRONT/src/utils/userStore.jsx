@@ -1,11 +1,13 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
-
 const useAuthStore = create(
   persist(
     (set) => ({
+      isLoading: false,
+      setIsLoading: (isLoading) => {
+        set({ isLoading });
+      },
       user: null,
-      isLoggedIn: false,
       login: (accessToken, refreshToken) => {
         localStorage.setItem("accessToken", accessToken);
         localStorage.setItem("refreshToken", refreshToken);
@@ -21,7 +23,7 @@ const useAuthStore = create(
       },
     }),
     {
-      name: "auth-storage", // Unique storage name
+      name: "auth-storage",
     }
   )
 );

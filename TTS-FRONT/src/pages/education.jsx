@@ -1,15 +1,15 @@
 import axios from "axios";
 import { CircleArrowLeft, Download, Loader, Pause, Play } from "lucide-react";
-import { useRef, useState } from "react";
-import { Link } from "react-router-dom";
+import { useEffect, useRef, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import { z } from "zod";
 import logo from "../assets/img/logo.png";
+import DialogConfirm from "../components/Dialog.jsx";
 import Footer from "../components/Footer.jsx";
+import useAuthStore from "../utils/userStore.jsx";
 import "./../assets/css/education.css";
-
 function Education() {
   const [text, setText] = useState("");
-  const [voices, setVoices] = useState([]);
   const [selectedVoice, setSelectedVoice] = useState("");
   const [language, setLanguage] = useState("en-US");
   const [playLoading, setPlayLoading] = useState(false);
@@ -18,9 +18,11 @@ function Education() {
   const [downloadError, setDownloadError] = useState("");
   const [isPlaying, setIsPlaying] = useState(false);
   const [progress, setProgress] = useState(0);
-
+  const { isLoggedIn, user, logout } = useAuthStore((state) => state);
   const audioRef = useRef(null);
-
+  const [showCard, setShowCard] = useState(false);
+  const [dialogOpen, setDialogOpen] = useState(false);
+  const navigate = useNavigate();
   const schema = z.object({
     text: z.string().min(1, "Le texte ne peut pas être vide"),
     language: z.string().min(1, "Veuillez sélectionner une langue"),
@@ -144,22 +146,76 @@ function Education() {
     }
   };
 
+  const handleLogout = () => {
+    logout();
+    navigate("/connexion");
+  };
+  useEffect(() => {
+    if (!isLoggedIn) {
+      navigate("/connexion");
+    }
+  }, []);
+
   return (
     <div className="Education">
       <header
         id="header"
         className="header flex items-center fixed top-0 w-full bg-white shadow-md z-50 transition duration-300 ease-in-out py-4 px-6 sm:px-8 md:px-12 lg:px-16 xl:px-20"
       >
-        <div className="container-fluid container-xl position-relative d-flex align-items-center">
-          <Link to="/" className="logo d-flex align-items-center me-auto">
-            <img src={logo} alt="QuickStart Logo" />
-            <h1 className="sitename">SpeechSync</h1>
+        <div className="container-fluid container-xl flex justify-between items-center">
+          <Link to="/" className="logo flex items-center">
+            <img src={logo} alt="QuickStart Logo" className="w-10 h-10" />
+            <h1 className="sitename ml-1 text-xl font-semibold">SpeechSync</h1>
           </Link>
-
-          <Link className="btn-getstarted flex" to={"/choix"}>
-            <CircleArrowLeft className="me-1" />
-            <span className="mt-1">Retour</span>
-          </Link>
+          <div className="flex items-center space-x-4">
+            <div className="mr-5 flex items-center">
+              <Link className="btn-getstarted flex mr-5 flex" to="/marketing">
+                marketing
+              </Link>
+              <div className="mr-5">
+                <Link
+                  className="btn-getstarted flex items-center"
+                  to={"/choix"}
+                >
+                  <CircleArrowLeft className="mr-1" />
+                  <span className="mt-1">Retour</span>
+                </Link>
+              </div>
+            </div>
+            <div
+              onMouseEnter={() => setShowCard(true)}
+              onMouseLeave={() => setShowCard(false)}
+              className="relative"
+            >
+              <button className="avatar focus:outline-none flex items-center">
+                <img
+                  className="w-10 h-10 rounded-full"
+                  src={`https://api.dicebear.com/9.x/avataaars/svg?seed=${user.email}`}
+                  alt="Profile"
+                />
+              </button>
+              {showCard && (
+                <div
+                  className={`card ${
+                    showCard ? "block" : "hidden"
+                  } absolute right-0 mt-2 p-2 rounded-lg shadow-lg bg-white`}
+                >
+                  <Link
+                    to="/profile"
+                    className="block mb-2 text-[#569EB5] hover:text-green-700"
+                  >
+                    Profile
+                  </Link>
+                  <button
+                    onClick={() => setDialogOpen(true)}
+                    className="block text-[#569EB5] hover:text-green-700"
+                  >
+                    Déconnexion
+                  </button>
+                </div>
+              )}
+            </div>
+          </div>
         </div>
       </header>
       <section id="hero" className="hero section">
@@ -290,6 +346,12 @@ function Education() {
         </div>
       </div>
       <Footer />
+      <DialogConfirm
+        isOpen={dialogOpen}
+        onClose={() => setDialogOpen(false)}
+        onConfirm={handleLogout}
+        message="Êtes-vous sûr de vouloir vous déconnecter ?"
+      />
     </div>
   );
 }
