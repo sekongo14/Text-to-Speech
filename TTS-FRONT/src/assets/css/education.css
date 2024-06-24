@@ -1,6 +1,6 @@
 .Education {
   width: 100%;
-  height: 100vh;
+  height: auto;
 }
 
 .Education .container h1 span {
@@ -16,10 +16,10 @@
   font-size: 15px;
   border: 0;
   outline: 0;
-  padding: 20px;
+  /* padding: 20px; */
   border-radius: 10px;
   resize: none;
-  margin-bottom: 30px;
+  /* margin-bottom: 30px; */
 }
 
 .Education textarea::placeholder {
@@ -27,7 +27,7 @@
   color: #ddd;
 }
 
-.Education .container {
+.Education .container:nth-child(1) {
   width: 80%;
   margin: 20px auto;
   background-color: #fff;
@@ -111,3 +111,66 @@
 .Education #speech-speed-text {
   margin-left: 10px;
 }
+<<<<<<< HEAD
+=======
+
+.Education .tts-container {
+  padding: 20px;
+  max-width: 600px;
+  margin-top: 50%;
+  margin: 0 auto;
+  background-color: #f9f9f9;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.Education .tts-container h2 {
+  text-align: center;
+  color: #333;
+}
+
+.Education .tts-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.Education .tts-form label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+  color: #555;
+}
+
+.Education .tts-form textarea,
+.Education .tts-form select,
+.Education .tts-form button,
+.Education .tts-form input[type="file"] {
+  padding: 10px;
+  font-size: 16px;
+  margin-bottom: 15px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+.Education .tts-form textarea {
+  width: 100%;
+  height: 100px;
+  resize: vertical;
+}
+
+.Education .tts-form select {
+  width: 100%;
+}
+
+.Education .tts-form button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.Education .tts-form button:hover {
+  background-color: #0056b3;
+}
+>>>>>>> 6bfa67a7ae93390a0bc6eaf9a66e8121ee61f19d

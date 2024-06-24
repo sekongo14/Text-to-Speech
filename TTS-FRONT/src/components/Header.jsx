@@ -9,27 +9,16 @@ const Header = () => {
   }, []);
 
   return (
-    <header id="header" className="header d-flex align-items-center fixed-top">
+    <header
+      id="header"
+      className="header flex items-center fixed top-0 w-full bg-white x
+      shadow-md z-50 transition duration-300 ease-in-out py-4 px-6 sm:px-8 md:px-12 lg:px-16 xl:px-20"
+    >
       <div className="container-fluid container-xl position-relative d-flex align-items-center">
         <Link to="/" className="logo d-flex align-items-center me-auto">
           <img src={logo} alt="QuickStart Logo" />
-          <h1 className="sitename">QuickStart</h1>
+          <h1 className="sitename">SpeechSync</h1>
         </Link>
-
-        <nav id="navmenu" className="navmenu">
-          <ul>
-            <li>
-              <Link to="/">Home</Link>
-            </li>
-            <li>
-              <Link to="/">About</Link>
-            </li>
-            <li>
-              <Link to="/">Services</Link>
-            </li>
-          </ul>
-          <i className="mobile-nav-toggle d-xl-none bi bi-list"></i>
-        </nav>
 
         <Link className="btn-getstarted" to={"/inscription"}>
           Inscription

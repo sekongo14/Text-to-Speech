@@ -1,15 +1,22 @@
+import "aos/dist/aos.css";
+import "glightbox/dist/css/glightbox.css";
 import { useEffect } from "react";
 import { Route, Routes } from "react-router-dom";
 import Acceuil from "./pages/acceuil.jsx";
+import Choix from "./pages/choix.jsx";
 import Connexion from "./pages/connexion.jsx";
 import Education from "./pages/education.jsx";
 import Inscription from "./pages/inscription.jsx";
 import Marketing from "./pages/marketing.jsx";
+<<<<<<< HEAD
 import Choix from "./pages/choix.jsx";
 import Profile from "./pages/profile.jsx";
 
 import "aos/dist/aos.css";
 import "glightbox/dist/css/glightbox.css";
+=======
+import Profile from "./pages/profile.jsx";
+>>>>>>> 6bfa67a7ae93390a0bc6eaf9a66e8121ee61f19d
 
 import {
   handlePreloader,
@@ -48,7 +55,9 @@ function App() {
   return (
     <>
       <Routes>
-        <Route path="/acceuil" Component={Acceuil} />
+        <Route path="/" Component={Acceuil} />
+        <Route path="/profile" Component={Profile} />
+        <Route path="/choix" Component={Choix} />
         <Route path="/education" Component={Education} />
         <Route path="/connexion" Component={Connexion} />
         <Route path="/inscription" Component={Inscription} />

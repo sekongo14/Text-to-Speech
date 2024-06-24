@@ -1,12 +1,20 @@
+// tts_form.jsx
+import axios from "axios";
+import { Loader } from "lucide-react";
 import { useEffect, useState } from "react";
 import "./../assets/css/marketing.css";
 
-const TextToSpeech = ({ onSubmit }) => {
+const MAX_TEXT_LENGTH = 500000;
+
+const TextToSpeech = () => {
   const [text, setText] = useState("");
   const [voices, setVoices] = useState([]);
   const [selectedVoice, setSelectedVoice] = useState("");
   const [language, setLanguage] = useState("en-US");
   const [videoFile, setVideoFile] = useState(null);
+  const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [downloadUrl, setDownloadUrl] = useState("");
 
   useEffect(() => {
     const synth = window.speechSynthesis;
@@ -24,7 +32,12 @@ const TextToSpeech = ({ onSubmit }) => {
   }, []);
 
   const handleTextChange = (e) => {
-    setText(e.target.value);
+    if (e.target.value.length > MAX_TEXT_LENGTH) {
+      setError(`Le texte ne peut pas dépasser ${MAX_TEXT_LENGTH} caractères.`);
+    } else {
+      setError("");
+      setText(e.target.value);
+    }
   };
 
   const handleVoiceChange = (e) => {
@@ -39,15 +52,46 @@ const TextToSpeech = ({ onSubmit }) => {
     setVideoFile(e.target.files[0]);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    const formData = {
-      text,
-      language,
-      selectedVoice,
-      videoFile,
-    };
-    onSubmit(formData);
+    if (text.length > MAX_TEXT_LENGTH) {
+      setError(`Le texte ne peut pas dépasser ${MAX_TEXT_LENGTH} caractères.`);
+      return;
+    }
+    if (!videoFile) {
+      setError("Veuillez télécharger un fichier vidéo.");
+      return;
+    }
+
+    setLoading(true);
+    setError("");
+
+    const formData = new FormData();
+    formData.append("text", text);
+    formData.append("language", language);
+    formData.append("selectedVoice", selectedVoice);
+    formData.append("videoFile", videoFile);
+
+    try {
+      const response = await axios.post(
+        "https://speechsync.pythonanywhere.com/marketing/api/marketting/",
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+          responseType: "blob",
+        }
+      );
+
+      const url = window.URL.createObjectURL(new Blob([response.data]));
+      setDownloadUrl(url);
+    } catch (error) {
+      console.error("Error processing the video:", error);
+      setError("Une erreur s'est produite lors du traitement de la vidéo.");
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -57,6 +101,7 @@ const TextToSpeech = ({ onSubmit }) => {
         <div>
           <label htmlFor="text">Enter text:</label>
           <textarea id="text" value={text} onChange={handleTextChange} />
+          {error && <p className="text-red-500">{error}</p>}
         </div>
         <div>
           <label htmlFor="language">Select Language:</label>
@@ -90,10 +135,24 @@ const TextToSpeech = ({ onSubmit }) => {
             onChange={handleVideoChange}
           />
         </div>
-        <button type="submit" className="bg-[#569EB5] text-white">
-          Submit
+        <button
+          type="submit"
+          className="bg-[#569EB5] text-white flex justify-center items-center"
+        >
+          {loading ? <Loader className="animate-spin" /> : "Submit"}
         </button>
       </form>
+      {downloadUrl && (
+        <div className="download-container">
+          <a href={downloadUrl} download="synced_video.mp4">
+            Télécharger la vidéo
+          </a>
+          <video controls>
+            <source src={downloadUrl} type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
+        </div>
+      )}
     </div>
   );
 };
