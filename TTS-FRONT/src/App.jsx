@@ -8,15 +8,7 @@ import Connexion from "./pages/connexion.jsx";
 import Education from "./pages/education.jsx";
 import Inscription from "./pages/inscription.jsx";
 import Marketing from "./pages/marketing.jsx";
-<<<<<<< HEAD
-import Choix from "./pages/choix.jsx";
 import Profile from "./pages/profile.jsx";
-
-import "aos/dist/aos.css";
-import "glightbox/dist/css/glightbox.css";
-=======
-import Profile from "./pages/profile.jsx";
->>>>>>> 6bfa67a7ae93390a0bc6eaf9a66e8121ee61f19d
 
 import {
   handlePreloader,
