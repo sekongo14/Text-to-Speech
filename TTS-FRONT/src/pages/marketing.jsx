@@ -41,7 +41,7 @@ function Marketing() {
 
             <div className="d-flex flex-row">
               <div className="mr-2">
-                <Link className="btn-getstarted flex mr-5 flex" to="/">
+                <Link className="btn-getstarted flex mr-5 flex" to="/choix">
                   <CircleArrowLeft className="me-1" />
                   Retour
                 </Link>

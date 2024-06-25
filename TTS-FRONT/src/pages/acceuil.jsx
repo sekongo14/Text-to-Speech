@@ -41,7 +41,7 @@ function Acceuil() {
       <main className="main">
         <section id="hero" className="hero section">
           <div className="hero-bg">
-            <img src="/src/assets/img/hero-bg-light.webp" alt="" />
+            <img src="./../assets/img/hero-bg-light.webp" alt="" />
           </div>
           <div className="container text-center">
             <div className="d-flex flex-column justify-content-center align-items-center">
@@ -70,7 +70,7 @@ function Acceuil() {
               </div>
 
               <img
-                src="/src/assets/img/Speech_to_sppech.png" // Utilisez une image représentative
+                src="./../assets/img/Speech_to_sppech.png" // Utilisez une image représentative
                 className="img-fluid hero-img"
                 alt="Service de conversion de texte en discours"
                 data-aos="zoom-out"
@@ -184,7 +184,7 @@ function Acceuil() {
                 <div className="row gy-4">
                   <div className="col-lg-6">
                     <img
-                      src="/src/assets/img/about-company-1.jpg"
+                      src="./../assets/img/about-company-1.jpg"
                       className="img-fluid"
                       alt="À propos de notre entreprise 1"
                     />
@@ -193,14 +193,14 @@ function Acceuil() {
                     <div className="row gy-4">
                       <div className="col-lg-12">
                         <img
-                          src="/src/assets/img/about-company-2.jpg"
+                          src="./../assets/img/about-company-2.jpg"
                           className="img-fluid"
                           alt="À propos de notre entreprise 2"
                         />
                       </div>
                       <div className="col-lg-12">
                         <img
-                          src="/src/assets/img/about-company-3.jpg"
+                          src="./../assets/img/about-company-3.jpg"
                           className="img-fluid"
                           alt="À propos de notre entreprise 3"
                         />
@@ -384,7 +384,7 @@ function Acceuil() {
               >
                 <div className="member-img relative overflow-hidden rounded-full w-36 h-36 mx-auto mb-4">
                   <img
-                    src="/src/assets/img/profile/yeloma.webp"
+                    src="./../assets/img/profile/yeloma.webp"
                     className="w-full h-full object-cover"
                     alt="Yéo Maïmouna"
                   />
@@ -406,7 +406,7 @@ function Acceuil() {
               >
                 <div className="member-img relative overflow-hidden rounded-full w-36 h-36 mx-auto mb-4">
                   <img
-                    src="/src/assets/img/profile/diara.webp"
+                    src="./../assets/img/profile/diara.webp"
                     className="w-full h-full object-cover"
                     alt="Diarassouba Mamadou"
                   />
@@ -429,7 +429,7 @@ function Acceuil() {
               >
                 <div className="member-img relative overflow-hidden rounded-full w-36 h-36 mx-auto mb-4">
                   <img
-                    src="/src/assets/img/profile/sekongo.webp"
+                    src="./../assets/img/profile/sekongo.webp"
                     className="w-full h-full object-cover"
                     alt="Sekongo Ismael"
                   />
@@ -452,7 +452,7 @@ function Acceuil() {
               >
                 <div className="member-img relative overflow-hidden rounded-full w-36 h-36 mx-auto mb-4">
                   <img
-                    src="/src/assets/img/team/team-5.jpg"
+                    src="./../assets/img/team/team-5.jpg"
                     className="w-full h-full object-cover"
                     alt="Wolle Arnaud"
                   />
