@@ -10,7 +10,7 @@ const Header = () => {
 
   return (
     <header
-      id="header"
+    id="header"
       className="header flex items-center fixed top-0 w-full bg-white x
       shadow-md z-50 transition duration-300 ease-in-out py-4 px-6 sm:px-8 md:px-12 lg:px-16 xl:px-20"
     >
