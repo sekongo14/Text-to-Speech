@@ -96,7 +96,7 @@ const TextToSpeech = () => {
 
   return (
     <div className="tts-container">
-      <h2>Text to Speech Form</h2>
+      <h2>Formulaire de Text to Speech</h2>
       <form className="tts-form" onSubmit={handleSubmit}>
         <div>
           <label htmlFor="text">Enter text:</label>
@@ -104,20 +104,20 @@ const TextToSpeech = () => {
           {error && <p className="text-red-500">{error}</p>}
         </div>
         <div>
-          <label htmlFor="language">Select Language:</label>
+          <label htmlFor="language">Selectionnez une Language:</label>
           <select
             id="language"
             value={language}
             onChange={handleLanguageChange}
           >
-            <option value="en-US">English (US)</option>
-            <option value="fr-FR">French</option>
-            <option value="es-ES">Spanish</option>
-            <option value="de-DE">German</option>
+            <option value="en-US">Anglais (US)</option>
+            <option value="fr-FR">Français</option>
+            <option value="es-ES">Espagnol</option>
+            <option value="de-DE">Allemand</option>
           </select>
         </div>
         <div>
-          <label htmlFor="voice">Select Voice:</label>
+          <label htmlFor="voice">Selectionnez une Voix:</label>
           <select id="voice" value={selectedVoice} onChange={handleVoiceChange}>
             {voices.map((voice) => (
               <option key={voice.name} value={voice.name}>
@@ -127,7 +127,7 @@ const TextToSpeech = () => {
           </select>
         </div>
         <div>
-          <label htmlFor="video">Upload video:</label>
+          <label htmlFor="video">Télécharger une vidéo:</label>
           <input
             type="file"
             id="video"
@@ -139,7 +139,7 @@ const TextToSpeech = () => {
           type="submit"
           className="bg-[#569EB5] text-white flex justify-center items-center"
         >
-          {loading ? <Loader className="animate-spin" /> : "Submit"}
+          {loading ? <Loader className="animate-spin" /> : "Envoyer"}
         </button>
       </form>
       {downloadUrl && (
@@ -149,7 +149,7 @@ const TextToSpeech = () => {
           </a>
           <video controls>
             <source src={downloadUrl} type="video/mp4" />
-            Your browser does not support the video tag.
+            Votre navigateur ne supporte pas la balise video.
           </video>
         </div>
       )}

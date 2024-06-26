@@ -1,15 +1,17 @@
 import axios from "axios";
-import { CircleArrowLeft, Download, Loader, Pause, Play } from "lucide-react";
+import { Download, Loader, Pause, Play } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { z } from "zod";
-import logo from "../assets/img/logo.png";
+import bgLight from "../assets/img/hero-bg-light.webp";
+import bgTextToSpeech from "../assets/img/text-to-speech.png";
 import DialogConfirm from "../components/Dialog.jsx";
 import Footer from "../components/Footer.jsx";
 import useAuthStore from "../utils/userStore.jsx";
 import "./../assets/css/education.css";
 function Education() {
   const [text, setText] = useState("");
+  const [showProfileOptions, setShowProfileOptions] = useState(false);
   const [selectedVoice, setSelectedVoice] = useState("");
   const [language, setLanguage] = useState("en-US");
   const [playLoading, setPlayLoading] = useState(false);
@@ -20,7 +22,6 @@ function Education() {
   const [progress, setProgress] = useState(0);
   const { isLoggedIn, user, logout } = useAuthStore((state) => state);
   const audioRef = useRef(null);
-  const [showCard, setShowCard] = useState(false);
   const [dialogOpen, setDialogOpen] = useState(false);
   const navigate = useNavigate();
   const schema = z.object({
@@ -158,51 +159,44 @@ function Education() {
 
   return (
     <div className="Education">
-      <header
-        id="header"
-        className="header flex items-center fixed top-0 w-full bg-white shadow-md z-50 transition duration-300 ease-in-out py-4 px-6 sm:px-8 md:px-12 lg:px-16 xl:px-20"
-      >
-        <div className="container-fluid container-xl flex justify-between items-center">
-          <Link to="/" className="logo flex items-center">
-            <img src={logo} alt="QuickStart Logo" className="w-10 h-10" />
-            <h1 className="sitename ml-1 text-xl font-semibold">SpeechSync</h1>
-          </Link>
-          <div className="flex items-center space-x-4">
-            <div className="mr-5 flex items-center">
-              <Link className="btn-getstarted flex mr-5 flex" to="/marketing">
-                marketing
-              </Link>
-              <div className="mr-5">
-                <Link
-                  className="btn-getstarted flex items-center"
-                  to={"/choix"}
-                >
-                  <CircleArrowLeft className="mr-1" />
-                  <span className="mt-1">Retour</span>
-                </Link>
-              </div>
-            </div>
-            <div
-              onMouseEnter={() => setShowCard(true)}
-              onMouseLeave={() => setShowCard(false)}
-              className="relative"
+      <header className="bg-white shadow-md fixed top-0 left-0 right-0 z-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex justify-between items-center h-16">
+            <Link
+              to={"/choix"}
+              className="text-gray-600 hover:text-gray-900 px-3 py-2 text-sm font-medium flex items-center"
             >
-              <button className="avatar focus:outline-none flex items-center">
-                <img
-                  className="w-10 h-10 rounded-full"
-                  src={`https://api.dicebear.com/9.x/avataaars/svg?seed=${user.email}`}
-                  alt="Profile"
+              <svg
+                className="w-5 h-5 mr-1"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M15 19l-7-7 7-7"
                 />
-              </button>
-              {showCard && (
-                <div
-                  className={`card ${
-                    showCard ? "block" : "hidden"
-                  } absolute right-0 mt-2 p-2 rounded-lg shadow-lg bg-white`}
-                >
+              </svg>
+              Retour au choix
+            </Link>
+            <div
+              className="relative"
+              onMouseEnter={() => setShowProfileOptions(true)}
+              onMouseLeave={() => setShowProfileOptions(false)}
+            >
+              <img
+                className="h-10 rounded-full cursor-pointer"
+                src={`https://api.dicebear.com/9.x/avataaars/svg?seed=${user.email}`}
+                alt="Logo"
+              />
+
+              {showProfileOptions && (
+                <div className="card absolute right-0 mb-2- p-2 rounded-lg shadow-lg">
                   <Link
                     to="/profile"
-                    className="block mb-2 text-[#569EB5] hover:text-green-700"
+                    className="block text-[#569EB5] hover:text-green-700"
                   >
                     Profile
                   </Link>
@@ -215,12 +209,21 @@ function Education() {
                 </div>
               )}
             </div>
+
+            <div className="flex items-center">
+              <Link
+                to={"/marketing"}
+                className="text-gray-600 hover:text-gray-900 px-3 py-2 text-sm font-medium"
+              >
+                Marketing
+              </Link>
+            </div>
           </div>
         </div>
       </header>
       <section id="hero" className="hero section">
         <div className="hero-bg">
-          <img src="/src/assets/img/hero-bg-light.webp" alt="" />
+          <img src={bgLight} alt="" />
         </div>
         <div className="container text-center">
           <div className="d-flex flex-column justify-content-center align-items-center">
@@ -229,7 +232,7 @@ function Education() {
             </h1>
 
             <img
-              src="/src/assets/img/text-to-speech.png"
+              src={bgTextToSpeech}
               className="img-fluid hero-img"
               alt="Service de conversion de texte en discours"
               data-aos="zoom-out"
@@ -286,7 +289,7 @@ function Education() {
               <button
                 type="button"
                 id="download"
-                className="bg-blue-500 text-white px-4 py-2 rounded-md flex items-center"
+                className="bg-[#569EB5] text-white px-4 py-2 rounded-md flex items-center"
                 onClick={handleDownload}
                 disabled={playLoading || downloadLoading}
               >
@@ -322,8 +325,8 @@ function Education() {
                 className="mt-1 block w-full p-2 border border-gray-300 rounded-md bg-white focus:outline-none focus:border-green-400"
               >
                 <option value="">Choisir une langue</option>
-                <option value="en-US">English</option>
-                <option value="fr-FR">French</option>
+                <option value="en-US">Anglais</option>
+                <option value="fr-FR">Français</option>
                 {/* Ajoutez d'autres langues ici */}
               </select>
             </div>

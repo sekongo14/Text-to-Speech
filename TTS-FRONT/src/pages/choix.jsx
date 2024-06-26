@@ -1,14 +1,13 @@
-import { CircleArrowLeft } from "lucide-react";
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import logo from "../assets/img/logo.png";
 import DialogConfirm from "../components/Dialog.jsx";
 import useAuthStore from "../utils/userStore.jsx";
 function Choix() {
-  const [showCard, setShowCard] = useState(false);
   const navigate = useNavigate();
   const { logout, isLoggedIn, user } = useAuthStore((state) => state);
   const [dialogOpen, setDialogOpen] = useState(false);
+  const [showProfileOptions, setShowProfileOptions] = useState(false);
 
   const handleLogout = () => {
     logout();
@@ -20,58 +19,50 @@ function Choix() {
       navigate("/connexion");
     }
   }, []);
+
   return (
     <div>
-      <header
-        id="header"
-        className="header flex items-center fixed top-0 w-full bg-white shadow-md z-50 transition duration-300 ease-in-out py-4 px-6 sm:px-8 md:px-12 lg:px-16 xl:px-20"
-      >
-        <div className="container-fluid container-xl position-relative flex justify-between items-center">
-          <div>
-            <Link to="/" className="logo d-flex align-items-center me-auto">
-              <img src={logo} alt="QuickStart Logo" />
-              <h1 className="sitename">SpeechSync</h1>
+      <header className="bg-white shadow-md fixed top-0 left-0 right-0 z-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex justify-between items-center h-16">
+            <Link to="/" className="flex items-center">
+              <img
+                src={logo}
+                alt="QuickStart Logo"
+                className="h-6 w-6 mr-2 sm:h-10 sm:w-auto"
+              />
+              <h1 className="text-xl font-bold text-gray-900 sm:text-sm">
+                SpeechSync
+              </h1>
             </Link>
-          </div>
 
-          <div className="d-flex flex-row">
-            <div className="mr-5">
-              <Link className="btn-getstarted flex mr-5 flex" to="/">
-                <CircleArrowLeft className="me-1" />
-                Retour
-              </Link>
-            </div>
             <div
-              onMouseEnter={() => setShowCard(true)}
-              onMouseLeave={() => setShowCard(false)}
               className="relative"
+              onMouseEnter={() => setShowProfileOptions(true)}
+              onMouseLeave={() => setShowProfileOptions(false)}
             >
-              <div
-                className={`card ${
-                  showCard ? "block" : "hidden"
-                } absolute right-0 mt-4 p-2 rounded-lg shadow-lg`}
-              >
-                <Link
-                  to="/profile"
-                  className="mb-2 block text-[#569EB5] hover:text-green-700"
-                >
-                  Profile
-                </Link>
-                <button
-                  onClick={() => setDialogOpen(true)}
-                  className="block text-[#569EB5] hover:text-green-700"
-                >
-                  Déconnexion
-                </button>
-              </div>
+              <img
+                className="h-10 rounded-full cursor-pointer"
+                src={`https://api.dicebear.com/9.x/avataaars/svg?seed=${user.email}`}
+                alt="Logo"
+              />
 
-              <button className="avatar focus:outline-none">
-                <img
-                  className="w-10 h-10 rounded-full"
-                  src={`https://api.dicebear.com/9.x/avataaars/svg?seed=${user.email}`}
-                  alt="Profile"
-                />
-              </button>
+              {showProfileOptions && (
+                <div className="card absolute right-0 mb-2- p-2 rounded-lg shadow-lg">
+                  <Link
+                    to="/profile"
+                    className="block text-[#569EB5] hover:text-green-700"
+                  >
+                    Profile
+                  </Link>
+                  <button
+                    onClick={() => setDialogOpen(true)}
+                    className="block text-[#569EB5] hover:text-green-700"
+                  >
+                    Déconnexion
+                  </button>
+                </div>
+              )}
             </div>
           </div>
         </div>

@@ -1,9 +1,7 @@
-import { Link, useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
 import logo from "../assets/img/logo.png";
 import "./../assets/css/footer.css";
 function Footer() {
-  const location = useLocation();
-
   return (
     <footer className="bg-gray-100 Footer">
       <div className="mt-10 mx-auto max-w-5xl px-4 py-10 sm:px-6 lg:px-8">

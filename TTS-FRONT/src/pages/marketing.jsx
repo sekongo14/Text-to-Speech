@@ -1,7 +1,6 @@
-import { CircleArrowLeft } from "lucide-react";
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import logo from "../assets/img/logo.png";
+import bgMarketing from "../assets/img/hero-bg-light.webp";
 import DialogConfirm from "../components/Dialog.jsx";
 import Footer from "../components/Footer.jsx";
 import TextToSpeech from "../components/tts_form.jsx";
@@ -10,7 +9,7 @@ import "./../assets/css/marketing.css";
 
 function Marketing() {
   const { isLoggedIn, user, logout } = useAuthStore((state) => state);
-  const [showCard, setShowCard] = useState(false);
+  const [showProfileOptions, setShowProfileOptions] = useState(false);
   const navigate = useNavigate();
   const [dialogOpen, setDialogOpen] = useState(false);
 
@@ -27,69 +26,76 @@ function Marketing() {
   return (
     <>
       <div>
-        <header
-          id="header"
-          className="header flex items-center fixed top-0 w-full bg-white shadow-md z-50 transition duration-300 ease-in-out py-4 px-6 sm:px-8 md:px-12 lg:px-16 xl:px-20"
-        >
-          <div className="container-fluid container-xl position-relative flex justify-between items-center">
-            <div>
-              <Link to="/" className="logo d-flex align-items-center me-auto">
-                <img src={logo} alt="QuickStart Logo" />
-                <h1 className="sitename">SpeechSync</h1>
-              </Link>
-            </div>
-
-            <div className="d-flex flex-row">
-              <div className="mr-2">
-                <Link className="btn-getstarted flex mr-5 flex" to="/choix">
-                  <CircleArrowLeft className="me-1" />
-                  Retour
-                </Link>
-              </div>
-              <div className="mr-5">
-                <Link className="btn-getstarted flex mr-5 flex" to="/education">
-                  education
-                </Link>
-              </div>
-              <div
-                onMouseEnter={() => setShowCard(true)}
-                onMouseLeave={() => setShowCard(false)}
-                className="relative"
+        <header className="bg-white shadow-md fixed top-0 left-0 right-0 z-50">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="flex justify-between items-center h-16">
+              {/* Bouton de retour */}
+              <Link
+                to={"/choix"}
+                className="text-gray-600 hover:text-gray-900 px-3 py-2 text-sm font-medium flex items-center"
               >
-                <div
-                  className={`card ${
-                    showCard ? "block" : "hidden"
-                  } absolute right-0 mt-4 p-2 rounded-lg shadow-lg`}
+                <svg
+                  className="w-5 h-5 mr-1"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
                 >
-                  <Link
-                    to="/profile"
-                    className="mb-2 block text-[#569EB5] hover:text-green-700"
-                  >
-                    Profile
-                  </Link>
-                  <button
-                    onClick={() => setDialogOpen(true)}
-                    className="block text-[#569EB5] hover:text-green-700"
-                  >
-                    Déconnexion
-                  </button>
-                </div>
-
-                <button className="avatar focus:outline-none">
-                  <img
-                    className="w-10 h-10 rounded-full"
-                    src={`https://api.dicebear.com/9.x/avataaars/svg?seed=${user.email}`}
-                    alt="Profile"
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M15 19l-7-7 7-7"
                   />
-                </button>
+                </svg>
+                Retour au choix
+              </Link>
+
+              {/* Logo ou image arrondie avec gestion du hover */}
+              <div
+                className="relative"
+                onMouseEnter={() => setShowProfileOptions(true)}
+                onMouseLeave={() => setShowProfileOptions(false)}
+              >
+                <img
+                  className="h-10 rounded-full cursor-pointer"
+                  src={`https://api.dicebear.com/9.x/avataaars/svg?seed=${user.email}`}
+                  alt="Logo"
+                />
+
+                {/* La carte affichée lorsque showProfileOptions est true */}
+                {showProfileOptions && (
+                  <div className="card absolute right-0 mb-2- p-2 rounded-lg shadow-lg">
+                    <Link
+                      to="/profile"
+                      className="block text-[#569EB5] hover:text-green-700"
+                    >
+                      Profile
+                    </Link>
+                    <button
+                      onClick={() => setDialogOpen(true)}
+                      className="block text-[#569EB5] hover:text-green-700"
+                    >
+                      Déconnexion
+                    </button>
+                  </div>
+                )}
+              </div>
+
+              {/* Autres options dans le header */}
+              <div className="flex items-center">
+                <Link
+                  to={"/education"}
+                  className="text-gray-600 hover:text-gray-900 px-3 py-2 text-sm font-medium"
+                >
+                  Education
+                </Link>
               </div>
             </div>
           </div>
         </header>
-
         <section id="hero" className="hero section">
           <div className="hero-bg">
-            <img src="/src/assets/img/hero-bg-light.webp" alt="" />
+            <img src={bgMarketing} alt="" />
           </div>
           <div className="container text-center">
             <div className="d-flex flex-column justify-content-center align-items-center">

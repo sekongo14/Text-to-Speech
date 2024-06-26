@@ -1,8 +1,18 @@
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
+import bgLight from "../assets/img/Speech_to_sppech.png";
+import aboutCompany1 from "../assets/img/about-company-1.jpg";
+import aboutCompany2 from "../assets/img/about-company-2.jpg";
+import aboutCompany3 from "../assets/img/about-company-3.jpg";
+import teamMember1 from "../assets/img/hero-bg-light.webp";
+import profileYeloma from "../assets/img/profile/Yeloma.webp";
+import profileDiara from "../assets/img/profile/diara.webp";
+import profileSekongo from "../assets/img/profile/sekongo.webp";
+import teamMember5 from "../assets/img/team/team-5.jpg";
 import Footer from "../components/Footer.jsx";
 import Header from "../components/Header.jsx";
 import "./../assets/css/acceuil.css";
+
 import {
   handlePreloader,
   handleScroll,
@@ -41,7 +51,7 @@ function Acceuil() {
       <main className="main">
         <section id="hero" className="hero section">
           <div className="hero-bg">
-            <img src="./../assets/img/hero-bg-light.webp" alt="" />
+            <img src={teamMember1} alt="" />
           </div>
           <div className="container text-center">
             <div className="d-flex flex-column justify-content-center align-items-center">
@@ -68,9 +78,8 @@ function Acceuil() {
                   <span>Voir la démo</span>
                 </Link>
               </div>
-
               <img
-                src="./../assets/img/Speech_to_sppech.png" // Utilisez une image représentative
+                src={bgLight}
                 className="img-fluid hero-img"
                 alt="Service de conversion de texte en discours"
                 data-aos="zoom-out"
@@ -184,7 +193,7 @@ function Acceuil() {
                 <div className="row gy-4">
                   <div className="col-lg-6">
                     <img
-                      src="./../assets/img/about-company-1.jpg"
+                      src={aboutCompany1}
                       className="img-fluid"
                       alt="À propos de notre entreprise 1"
                     />
@@ -193,14 +202,14 @@ function Acceuil() {
                     <div className="row gy-4">
                       <div className="col-lg-12">
                         <img
-                          src="./../assets/img/about-company-2.jpg"
+                          src={aboutCompany2}
                           className="img-fluid"
                           alt="À propos de notre entreprise 2"
                         />
                       </div>
                       <div className="col-lg-12">
                         <img
-                          src="./../assets/img/about-company-3.jpg"
+                          src={aboutCompany3}
                           className="img-fluid"
                           alt="À propos de notre entreprise 3"
                         />
@@ -384,7 +393,7 @@ function Acceuil() {
               >
                 <div className="member-img relative overflow-hidden rounded-full w-36 h-36 mx-auto mb-4">
                   <img
-                    src="./../assets/img/profile/yeloma.webp"
+                    src={profileYeloma}
                     className="w-full h-full object-cover"
                     alt="Yéo Maïmouna"
                   />
@@ -406,7 +415,7 @@ function Acceuil() {
               >
                 <div className="member-img relative overflow-hidden rounded-full w-36 h-36 mx-auto mb-4">
                   <img
-                    src="./../assets/img/profile/diara.webp"
+                    src={profileDiara}
                     className="w-full h-full object-cover"
                     alt="Diarassouba Mamadou"
                   />
@@ -429,7 +438,7 @@ function Acceuil() {
               >
                 <div className="member-img relative overflow-hidden rounded-full w-36 h-36 mx-auto mb-4">
                   <img
-                    src="./../assets/img/profile/sekongo.webp"
+                    src={profileSekongo}
                     className="w-full h-full object-cover"
                     alt="Sekongo Ismael"
                   />
@@ -452,7 +461,7 @@ function Acceuil() {
               >
                 <div className="member-img relative overflow-hidden rounded-full w-36 h-36 mx-auto mb-4">
                   <img
-                    src="./../assets/img/team/team-5.jpg"
+                    src={teamMember5}
                     className="w-full h-full object-cover"
                     alt="Wolle Arnaud"
                   />
