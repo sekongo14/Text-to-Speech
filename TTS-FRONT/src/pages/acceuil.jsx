@@ -8,7 +8,7 @@ import teamMember1 from "../assets/img/hero-bg-light.webp";
 import profileYeloma from "../assets/img/profile/Yeloma.webp";
 import profileDiara from "../assets/img/profile/diara.webp";
 import profileSekongo from "../assets/img/profile/sekongo.webp";
-import teamMember5 from "../assets/img/team/team-5.jpg";
+import wolle from "../assets/img/profile/wolle.webp";
 import Footer from "../components/Footer.jsx";
 import Header from "../components/Header.jsx";
 import "./../assets/css/acceuil.css";
@@ -461,7 +461,7 @@ function Acceuil() {
               >
                 <div className="member-img relative overflow-hidden rounded-full w-36 h-36 mx-auto mb-4">
                   <img
-                    src={teamMember5}
+                    src={wolle}
                     className="w-full h-full object-cover"
                     alt="Wolle Arnaud"
                   />
