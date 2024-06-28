@@ -101,7 +101,7 @@ function Education() {
     setDownloadError("");
     try {
       const response = await axios.post(
-        "http://127.0.0.1:8000/education/text-to-speech/",
+        "https://speechsync.pythonanywhere.com/education/text-to-speech/",
         {
           text,
           language,
