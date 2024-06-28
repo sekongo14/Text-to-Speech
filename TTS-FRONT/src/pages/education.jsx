@@ -341,8 +341,8 @@ function Education() {
                 className="mt-1 block w-full p-2 border border-gray-300 rounded-md bg-white focus:outline-none focus:border-green-400"
               >
                 <option value="">Choisir une voix</option>
-                <option value="Male">Male</option>
-                <option value="Female">Female</option>
+                <option value="Male">Homme</option>
+                <option value="Female">Femme</option>
               </select>
             </div>
           </div>
