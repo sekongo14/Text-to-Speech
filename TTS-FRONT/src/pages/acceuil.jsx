@@ -11,6 +11,7 @@ import profileSekongo from "../assets/img/profile/sekongo.webp";
 import wolle from "../assets/img/profile/wolle.webp";
 import Footer from "../components/Footer.jsx";
 import Header from "../components/Header.jsx";
+import useAuthStore from "../utils/userStore.jsx";
 import "./../assets/css/acceuil.css";
 
 import {
@@ -23,6 +24,7 @@ import {
 } from "./../assets/js/main.js";
 
 function Acceuil() {
+  const { isLoggedIn } = useAuthStore();
   useEffect(() => {
     // Initialize external scripts
     initializeAOS();
@@ -48,6 +50,7 @@ function Acceuil() {
   return (
     <>
       <Header />
+
       <main className="main">
         <section id="hero" className="hero section">
           <div className="hero-bg">
@@ -67,16 +70,24 @@ function Acceuil() {
                 Améliorez vos projets avec des options de discours avancées.
               </p>
               <div className="d-flex" data-aos="fade-up" data-aos-delay="200">
-                <Link to={"/inscription"} className="btn-get-started">
-                  Commencer
-                </Link>
-                <Link
-                  to={"/demo"} // Remplacez par l'URL de votre démo
-                  className="glightbox btn-watch-video d-flex align-items-center"
-                >
-                  <i className="bi bi-play-circle"></i>
-                  <span>Voir la démo</span>
-                </Link>
+                {isLoggedIn ? (
+                  <Link to={"/choix"} className="btn-get-started">
+                    Accesser aux services
+                  </Link>
+                ) : (
+                  <>
+                    <Link to={"/inscription"} className="btn-get-started">
+                      Commencer
+                    </Link>
+                    <Link
+                      to={"/demo"} // Remplacez par l'URL de votre démo
+                      className="glightbox btn-watch-video d-flex align-items-center"
+                    >
+                      <i className="bi bi-play-circle"></i>
+                      <span>Voir la démo</span>
+                    </Link>
+                  </>
+                )}
               </div>
               <img
                 src={bgLight}

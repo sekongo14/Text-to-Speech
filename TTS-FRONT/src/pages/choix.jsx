@@ -11,12 +11,14 @@ function Choix() {
 
   const handleLogout = () => {
     logout();
-    navigate("/connexion");
+    navigate("/");
   };
+
+  console.log(user);
 
   useEffect(() => {
     if (!isLoggedIn) {
-      navigate("/connexion");
+      navigate("/");
     }
   }, []);
 
@@ -43,7 +45,7 @@ function Choix() {
             >
               <img
                 className="h-10 rounded-full cursor-pointer"
-                src={`https://api.dicebear.com/9.x/avataaars/svg?seed=${user.email}`}
+                src={`https://api.dicebear.com/9.x/avataaars/svg?seed=${user?.email}`}
                 alt="Logo"
               />
 

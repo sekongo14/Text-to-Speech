@@ -21,7 +21,7 @@ function Marketing() {
 
   const handleLogout = () => {
     logout();
-    navigate("/connexion");
+    navigate("/");
   };
   return (
     <>

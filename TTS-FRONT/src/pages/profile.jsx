@@ -13,7 +13,7 @@ const Profile = () => {
 
   const handleLogout = () => {
     logout();
-    navigate("/connexion");
+    navigate("/");
   };
 
   useEffect(() => {

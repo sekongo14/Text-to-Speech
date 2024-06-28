@@ -149,11 +149,11 @@ function Education() {
 
   const handleLogout = () => {
     logout();
-    navigate("/connexion");
+    navigate("/");
   };
   useEffect(() => {
     if (!isLoggedIn) {
-      navigate("/connexion");
+      navigate("/");
     }
   }, []);
 
