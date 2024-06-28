@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import bgMarketing from "../assets/img/hero-bg-light.webp";
+import MarketingImg from "../assets/img/marketing.jpg";
 import DialogConfirm from "../components/Dialog.jsx";
 import Footer from "../components/Footer.jsx";
 import TextToSpeech from "../components/tts_form.jsx";
@@ -104,7 +105,7 @@ function Marketing() {
               </h1>
 
               <img
-                src="./src/assets/img/marketing.jpg"
+                src={MarketingImg}
                 className="img-fluid hero-img"
                 alt="Service de conversion de texte en discours"
                 data-aos="zoom-out"
