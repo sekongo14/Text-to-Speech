@@ -31,7 +31,7 @@ const Profile = () => {
         const response = await fetchApi(
           `account/profile/${user_id}`,
           { method: "GET" },
-          false
+          true
         );
         setUser(response);
       } catch (error) {
