@@ -7,6 +7,7 @@ import { z } from "zod";
 import useAuthStore from "../utils/userStore.jsx";
 import "./../assets/css/inscription.css";
 import fetchAPI from "./../utils/API.jsx";
+
 const LoginSchema = z.object({
   username: z
     .string({

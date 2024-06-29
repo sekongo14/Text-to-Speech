@@ -79,13 +79,13 @@ function Acceuil() {
                     <Link to={"/inscription"} className="btn-get-started">
                       Commencer
                     </Link>
-                    <Link
-                      to={"/demo"} // Remplacez par l'URL de votre démo
+                    {/* <Link
+                      to={"/demo"}
                       className="glightbox btn-watch-video d-flex align-items-center"
                     >
                       <i className="bi bi-play-circle"></i>
                       <span>Voir la démo</span>
-                    </Link>
+                    </Link> */}
                   </>
                 )}
               </div>
